@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Employees</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>Employees</h2>
+<div>
+    <table table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Title</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tr th:each="employee : ${allEmployees}">
+        <td>[[${employee.firstName}]]</td>
+        <td>[[${employee.lastName}]]</td>
+        <td>[[${employee.title}]]</td>
+        <td>
+           <a th:href="@{/editemployee/{id}(id=${employee.id})}"> <button class="btn btn-primary">Edit</button></a>
+            <a th:href="@{/deleteemployee/{id}(id=${employee.id})}"> <button class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+</table>
+</div>
+<a th:href="@{/}"> <button class="btn btn-light">Back to home page</button></a>
+</body>
+</html>

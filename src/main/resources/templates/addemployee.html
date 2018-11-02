@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Add new employee</h2>
+<form th:action="@{/processemployee}" th:object="${employee}" method="post">
+   <div class="form-group">
+       <label>First name:</label>
+       <input type="text" class="form-control" th:field="*{firstName}" >
+   </div>
+    <div class="form-group">
+        <label>Last name:</label>
+        <input type="text" class="form-control" th:field="*{lastName}">
+    </div>
+    <div class="form-group">
+        <label>Title:</label>
+        <input type="text" class="form-control" th:field="*{title}">
+    </div>
+<div>
+    <select th:field="*{department}">
+        <option value="">Select Department</option>
+        <option th:each="eachDepartment : ${departments}"
+                th:value="${eachDepartment.id}">[[${eachDepartment.depart}]]</option>
+    </select>
+</div>
+    <br/>
+    <input type="submit" class="btn btn-success" value="Add">
+</form>
+    <a th:href="@{/}"> <button class="btn btn-light">Back to home page</button></a>
+</div>
+</body>
+</html>
